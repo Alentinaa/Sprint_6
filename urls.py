@@ -1,4 +1,5 @@
 class URLs:
-    MAIN_PAGE = 'https://qa-scooter.praktikum-services.ru/'
-    ORDER_PAGE = 'https://qa-scooter.praktikum-services.ru/order'
-    ORDER_STATUS_PAGE = 'https://qa-scooter.praktikum-services.ru/track'
+    BASE_URL = 'https://qa-scooter.praktikum-services.ru/'
+    MAIN_PAGE = BASE_URL
+    ORDER_PAGE = f'{BASE_URL}order'
+    ORDER_STATUS_PAGE = f'{BASE_URL}truck'

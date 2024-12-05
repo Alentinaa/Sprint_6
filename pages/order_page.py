@@ -53,7 +53,7 @@ class OrderPage(BasePage):
         return self.find_element_with_wait(OrderPageLocators.RENTAL_PERIOD_LIST).click()
 
     @allure.step('Выбор цвета самоката')
-    def choose_color(self, option: int):
+    def choose_color(self):
         return self.find_element_with_wait(OrderPageLocators.COLOR_CHECKBOXES).click()
 
     @allure.step('Комментарий для курьера')
@@ -64,8 +64,7 @@ class OrderPage(BasePage):
     def enter_rest_data(self, data_set: dict):
         self.enter_date(data_set['date'])
         self.choose_rental_period()
-        for option in data_set['color']:
-            self.choose_color(option)
+        self.choose_color()
         self.enter_comment(data_set['comment_for_courier'])
 
     @allure.step('Нажать "Заказать" после заполнения данных')
@@ -75,3 +74,8 @@ class OrderPage(BasePage):
     @allure.step('Подтвердить заказ')
     def click_accept_order(self):
         return self.find_element_with_wait(OrderPageLocators.ACCEPT_ORDER_BUTTON).click()
+
+    @allure.step('Кнопка "Показать статус" отображается')
+    def is_order_successful(self):
+        element = self.find_element_with_wait(OrderPageLocators.SHOW_STATUS_BUTTON)
+        return element.is_displayed()

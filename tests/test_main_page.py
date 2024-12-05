@@ -19,8 +19,8 @@ class TestOrderButton:
     def test_click_order_button(self, driver, order_button_locator):
         url = URLs.MAIN_PAGE
         main_page = MainPage(driver)
-        driver.get(url)
+        main_page.go_to_url(url)
         main_page.click_accept_cookie_button()
         main_page.click_order_button(order_button_locator)
-        assert URLs.ORDER_PAGE in driver.current_url
+        assert URLs.ORDER_PAGE in main_page.get_current_url()
 

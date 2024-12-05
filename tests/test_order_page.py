@@ -2,7 +2,6 @@ import pytest
 import allure
 from data import OrderPageData
 from locators.main_page_locators import MainPageLocators
-from locators.order_page_locators import OrderPageLocators
 from pages.main_page import MainPage
 from pages.order_page import OrderPage
 from urls import URLs
@@ -21,7 +20,7 @@ class TestOrder:
     def test_create_order_is_successful(self, driver, entry_button_locator, customer_data):
         url = URLs.MAIN_PAGE
         main_page = MainPage(driver)
-        driver.get(url)
+        main_page.go_to_url(url)
         main_page.click_accept_cookie_button()
         main_page.click_order_button(entry_button_locator)
         order_page = OrderPage(driver)
@@ -30,5 +29,5 @@ class TestOrder:
         order_page.enter_rest_data(customer_data)
         order_page.click_order_button()
         order_page.click_accept_order()
-        assert order_page.find_element_with_wait(OrderPageLocators.SHOW_STATUS_BUTTON).is_displayed()
+        assert order_page.is_order_successful()
 

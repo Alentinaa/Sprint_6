@@ -7,6 +7,14 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
+    @allure.step('Получение текущего урла')
+    def get_current_url(self):
+        return self.driver.current_url
+
+    @allure.step('Получение урла для открытия страницы')
+    def go_to_url(self, url):
+        self.driver.get(url)
+
     @allure.step('Поиск элемента с ожиданием')
     def find_element_with_wait(self, locator):
         WebDriverWait(self.driver, 20).until(
@@ -36,3 +44,11 @@ class BasePage:
         method, locator = locator_1
         locator = locator.format(num)
         return method, locator
+
+    @allure.step ('Получить список хендлов окон')
+    def get_window_handles(self):
+        return self.driver.window_handles
+
+    @allure.step ('Переключиться на окно по его хендлу')
+    def switch_to_window(self, window_handle):
+        self.driver.switch_to.window(window_handle)

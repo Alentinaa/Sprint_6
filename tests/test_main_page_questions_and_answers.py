@@ -24,7 +24,7 @@ class TestMainPage:
     def test_questions_and_answers(self, driver, num, result):
         url = URLs.MAIN_PAGE
         main_page = MainPage(driver)
-        driver.get(url)
+        main_page.go_to_url(url)
         main_page.click_accept_cookie_button()
         assert main_page.get_answer_text(num) == result
 

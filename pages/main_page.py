@@ -18,5 +18,5 @@ class MainPage(BasePage):
 
     @allure.step('Нажать на кнопку Заказать, переданную в локаторе')
     def click_order_button(self, locator):
-        self.driver.find_element(*locator).click()
+        self.find_element_with_wait(locator).click()
 
